@@ -42,7 +42,12 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordP
 //Dashboard
 Route::get('/lecturer/dashboard', [LecturerController::class, 'index'])->name('lecturer.dashboard');
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
+Route::get('/student/lecturers', [StudentController::class, 'lecturer'])->name('student.lecturers');
+Route::get('/student/updates', [StudentController::class, 'updates'])->name('student.updates');
+
 
 Route::get('/student/passOur', [PassoutController::class, 'index'])->name('student.passOur');
 Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map');
 
+//passout
+// routes/web.php

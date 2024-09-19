@@ -69,6 +69,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
     border-radius: 25px;
+    margin-top: 20px;
 }
 
 .news-update-section .news-card-container .news-card{
