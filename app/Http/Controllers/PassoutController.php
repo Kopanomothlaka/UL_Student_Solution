@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 class PassoutController extends Controller
@@ -9,7 +10,11 @@ class PassoutController extends Controller
     //
     public function index()
     {
-        return view('student.passOur'); // Create this view
+        // Fetching all devices from the database
+        $devices = Device::all();
+
+        // Passing data to the view
+        return view('student.passOur', ['devices' => $devices]);
     }
     public function map()
     {

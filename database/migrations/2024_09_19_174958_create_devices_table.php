@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('serial_number')->unique();
+            $table->string('type');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

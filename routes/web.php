@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\PassoutController;
@@ -41,6 +42,7 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordP
 
 //Dashboard
 Route::get('/lecturer/dashboard', [LecturerController::class, 'index'])->name('lecturer.dashboard');
+
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
 Route::get('/student/lecturers', [StudentController::class, 'lecturer'])->name('student.lecturers');
 Route::get('/student/updates', [StudentController::class, 'updates'])->name('student.updates');
@@ -51,3 +53,4 @@ Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map
 
 //passout
 // routes/web.php
+Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');

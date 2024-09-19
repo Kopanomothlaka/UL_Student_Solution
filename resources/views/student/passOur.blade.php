@@ -76,52 +76,6 @@
             justify-content: center;
             margin-top: 20px;
         }
-
-        /* News Card */
-        .news-card {
-            background-color: #ffffff;
-            border: 1px solid #dddddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%; /* Full width for small screens */
-            max-width: 300px; /* Max width for larger screens */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .news-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .news-card-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .news-card-content {
-            padding: 15px;
-        }
-
-        .news-card-content a {
-            display: block;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-            margin-bottom: 10px;
-        }
-
-        .news-card-content a:hover {
-            color: #C8AB4D;
-        }
-
-        .news-card-content h4 {
-            margin: 5px 0;
-            font-size: 16px;
-            color: #666;
-        }
     </style>
 
     <section class="news-update-section">
@@ -149,7 +103,7 @@
                             <div class="col-md-10">
                                 <div class="card shadow-sm">
                                     <div class="card-body">
-                                        <form action="" method="" enctype="multipart/form-data">
+                                        <form action="{{ route('devices.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="deviceName">Device Name</label>
@@ -181,55 +135,29 @@
                 </div>
             </div>
 
+            <!-- Device Display Section -->
             <div class="news-card-container">
-                <div class="news-card">
-                    <div class="news-card-img">
-                        <img src="/assets/images/graduation_event_image.jpeg" alt="Graduation Event">
+                <!-- Example of Static Data (can be dynamic with PHP loop) -->
+                @foreach($devices as $device)
+                    <div class="news-card">
+                        <div class="news-card-img">
+                            <img src="{{ asset('/device_images/' . $device->image) }}" alt="">
+                        </div>
+                        <div class="news-card-img">
+                            <img src="/assets/images/laptop_image.png" alt="Graduation Event">
+                        </div>
+                        <div class="news-card-content">
+                            <a href="#">{{ $device->name }}</a>
+                            <h4>Serial Number: {{ $device->serial_number }}</h4>
+                            <h4>Device Type: {{ $device->type }}</h4>
+                        </div>
                     </div>
-                    <div class="news-card-content">
-                        <a href="#">WHITE LENOVO</a>
-                        <h4>Serial Number: CN1855569552</h4>
-                        <h4>Student Number: 202065806</h4>
-                        <h4>Device Type: Laptop</h4>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-card-img">
-                        <img src="/assets/images/graduation_event_image.jpeg" alt="Graduation Event">
-                    </div>
-                    <div class="news-card-content">
-                        <a href="#">WHITE LENOVO</a>
-                        <h4>Serial Number: CN1855569552</h4>
-                        <h4>Student Number: 202065806</h4>
-                        <h4>Device Type: Laptop</h4>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-card-img">
-                        <img src="/assets/images/graduation_event_image.jpeg" alt="Graduation Event">
-                    </div>
-                    <div class="news-card-content">
-                        <a href="#">WHITE LENOVO</a>
-                        <h4>Serial Number: CN1855569552</h4>
-                        <h4>Student Number: 202065806</h4>
-                        <h4>Device Type: Laptop</h4>
-                    </div>
-                </div>
-                <div class="news-card">
-                    <div class="news-card-img">
-                        <img src="/assets/images/graduation_event_image.jpeg" alt="Graduation Event">
-                    </div>
-                    <div class="news-card-content">
-                        <a href="#">WHITE LENOVO</a>
-                        <h4>Serial Number: CN1855569552</h4>
-                        <h4>Student Number: 202065806</h4>
-                        <h4>Device Type: Laptop</h4>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
+    <!-- Bootstrap and jQuery Scripts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
