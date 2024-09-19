@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\PassoutController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -54,3 +55,6 @@ Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map
 //passout
 // routes/web.php
 Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');
+//profile
+Route::get('/student/profile/StudentProfile', [StudentProfileController::class, 'profile'])->name('student.profile.StudentProfile');
+

@@ -12,5 +12,5 @@
         <li class="nav-item"><a href="{{route('student.updates')}}" class="nav-link">Updates</a></li>
         <li class="nav-item"><a href="{{ url('/lost-items') }}" class="nav-link">Lost Items</a></li>
     </ul>
-    <a href="{{ url('/profile') }}" class="profile-link">Profile</a>
+    <a href="{{route('student.profile.StudentProfile')}}" class="profile-link">Profile</a>
 </nav>
