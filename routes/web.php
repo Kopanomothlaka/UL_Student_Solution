@@ -57,4 +57,5 @@ Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map
 Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');
 //profile
 Route::get('/student/profile/StudentProfile', [StudentProfileController::class, 'profile'])->name('student.profile.StudentProfile');
+Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
 

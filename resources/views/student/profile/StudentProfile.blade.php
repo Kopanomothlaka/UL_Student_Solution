@@ -16,16 +16,53 @@
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Full names</label><input type="text" class="form-control"  value=""></div>
-                        <div class="col-md-12"><label class="labels">Phone number</label><input type="text" class="form-control"  value=""></div>
-                        <div class="col-md-12"><label class="labels">Email address</label><input type="text" class="form-control" value=""></div>
-                        <div class="col-md-12"><label class="labels">Role</label><input type="text" class="form-control"  value=""></div>
-                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                    <div class="mt-5 text-center"><button class="btn  profile-button" type="button" style="background: #b89c3e;color: white">Save Profile</button></div>
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+
+                    <form action="{{ route('profile.update') }}" method="POST">
+                        @csrf
+                        @method('PUT') <!-- For updating -->
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Full names</label>
+                                <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Phone number</label>
+                                <input type="text" class="form-control" name="phone" value="{{ auth()->user()->phone }}">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email address</label>
+                                <input type="email" class="form-control" name="email" value="{{ auth()->user()->email }}">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Role</label>
+                                <input type="text" class="form-control" name="role" value="{{ auth()->user()->role }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 text-center">
+                            <button class="btn profile-button" type="submit" style="background: #b89c3e; color: white">Save Profile</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
 
         </div>
     </div>
