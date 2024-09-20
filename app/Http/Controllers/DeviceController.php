@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeviceController extends Controller
 {
@@ -32,6 +33,7 @@ class DeviceController extends Controller
             'serial_number' => $request->deviceSerial,
             'type' => $request->deviceType,
             'image' => $imagePath,
+            'user_id' => Auth::id()
         ]);
 
         return redirect()->back()->with('success', 'Device registered successfully!');

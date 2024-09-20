@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'serial_number', 'type', 'image'];
+    protected $fillable = ['name', 'serial_number', 'type', 'image', 'user_id']; // Add user_id
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
