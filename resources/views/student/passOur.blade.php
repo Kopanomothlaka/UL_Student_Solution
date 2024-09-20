@@ -92,6 +92,21 @@
                 </div>
             </div>
             <hr style="border: 1px solid #C8AB4D; margin-top: 20px;">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <!-- Modal structure -->
             <div id="deviceModal" class="modal">
@@ -103,6 +118,21 @@
                             <div class="col-md-10">
                                 <div class="card shadow-sm">
                                     <div class="card-body">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+
+                                        @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                        @endif
                                         <form action="{{ route('devices.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">

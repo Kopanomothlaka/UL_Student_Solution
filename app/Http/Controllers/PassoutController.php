@@ -11,8 +11,7 @@ class PassoutController extends Controller
     public function index()
     {
         // Fetching all devices from the database
-        $devices = Device::all();
-
+        $devices = Device::orderBy('created_at', 'desc')->get();
         // Passing data to the view
         return view('student.passOur', ['devices' => $devices]);
     }

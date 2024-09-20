@@ -15,7 +15,10 @@ class DeviceController extends Controller
             'deviceSerial' => 'required|string|unique:devices,serial_number|max:255',
             'deviceType' => 'required|string|max:255',
             'deviceImage' => 'nullable|image|max:2048',
-        ]);
+        ],[
+        'deviceSerial.unique' => 'The device serial number is registered. ',
+    ]);
+
 
         // Handle file upload
         $imagePath = null;
