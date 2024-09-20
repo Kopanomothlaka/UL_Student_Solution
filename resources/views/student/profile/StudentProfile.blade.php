@@ -8,14 +8,27 @@
     <div class="container rounded bg-white mt-5 mb-5 mx-auto" style="max-width: 800px;" >
         <div class="row">
             <div class="col-md-3 ">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+
+                    <!-- Display the user's name and email dynamically -->
+                    <span class="font-weight-bold">{{ auth()->user()->name }}</span>
+                    <span class="text-black-50">{{ auth()->user()->email }}</span>
+                    <span> </span>
+
+                    <!-- Logout button -->
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger mt-3" type="submit">Log Out</button>
+                    </form>
+                </div>
             </div>
+
             <div class="col-md-5 ">
                 <div class="p-3 py-8">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -33,14 +46,14 @@
                     @endif
 
 
-                    <form action="{{ route('profile.update') }}" method="POST">
+                    <form action="{{ route('profile.update') }}" method="POST" class="custom-width">
                         @csrf
                         @method('PUT') <!-- For updating -->
 
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <label class="labels">Full names</label>
-                                <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}">
+                                <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}" >
                             </div>
                             <div class="col-md-12">
                                 <label class="labels">Phone number</label>
@@ -56,16 +69,39 @@
                             </div>
                         </div>
 
+                        <!-- Add password change fields -->
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Current Password</label>
+                                <input type="password" class="form-control" name="current_password" placeholder="Enter current password">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">New Password</label>
+                                <input type="password" class="form-control" name="new_password" placeholder="Enter new password">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Confirm New Password</label>
+                                <input type="password" class="form-control" name="new_password_confirmation" placeholder="Confirm new password">
+                            </div>
+                        </div>
+
                         <div class="mt-5 text-center">
-                            <button class="btn profile-button" type="submit" style="background: #b89c3e; color: white">Save Profile</button>
+                            <button class="btn profile-button" type="submit" style="background: #b89c3e; color: white">Update Profile</button>
                         </div>
                     </form>
                 </div>
             </div>
 
 
+
         </div>
     </div>
+    <style>
+        .custom-width {
+            width: 400px; /* Set the desired width */
+        }
+
+    </style>
 
 
 

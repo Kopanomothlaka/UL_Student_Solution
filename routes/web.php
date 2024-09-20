@@ -58,4 +58,5 @@ Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices
 //profile
 Route::get('/student/profile/StudentProfile', [StudentProfileController::class, 'profile'])->name('student.profile.StudentProfile');
 Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
+Route::post('/logout', [StudentProfileController::class, 'logout'])->name('logout');
 
