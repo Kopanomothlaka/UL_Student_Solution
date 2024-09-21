@@ -133,30 +133,60 @@
                                                 {{ session('success') }}
                                             </div>
                                         @endif
-                                        <form action="{{ route('devices.store') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="deviceName">Device Name</label>
-                                                <input type="text" class="form-control" id="deviceName" name="deviceName" placeholder="Enter device name" required>
-                                            </div>
+                                            <form action="{{ route('devices.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                                                @csrf
 
-                                            <div class="form-group">
-                                                <label for="deviceSerial">Serial Number</label>
-                                                <input type="text" class="form-control" id="deviceSerial" name="deviceSerial" placeholder="Enter serial number" required>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="deviceName">Device Name</label>
+                                                    <input type="text" class="form-control" id="deviceName" name="deviceName" pattern="[A-Za-z ]+" placeholder="Enter device name" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a device name and numbers are not allowed
+                                                    </div>
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="deviceType">Device Type</label>
-                                                <input type="text" class="form-control" id="deviceType" name="deviceType" placeholder="Enter device type" required>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="deviceSerial">Serial Number</label>
+                                                    <input type="text" class="form-control" id="deviceSerial" name="deviceSerial" placeholder="Enter serial number" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a serial number.
+                                                    </div>
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="deviceImage">Device Image</label>
-                                                <input type="file" class="form-control-file" id="deviceImage" name="deviceImage" accept="image/*">
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="deviceType">Device Type</label>
+                                                    <input type="text" class="form-control" id="deviceType" name="deviceType" pattern="[A-Za-z ]+" placeholder="Enter device type" required>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a device type and numbers are not allowed .
+                                                    </div>
+                                                </div>
 
-                                            <button type="submit" class="btn btn-primary btn-block" style="background-color: #C8AB4D; border-color: #C8AB4D;">Add Device</button>
-                                        </form>
+                                                <div class="form-group">
+                                                    <label for="deviceImage">Device Image</label>
+                                                    <input type="file" class="form-control-file" id="deviceImage" name="deviceImage" accept="image/*">
+                                                    <div class="invalid-feedback">
+                                                        Please upload an image.
+                                                    </div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary btn-block" style="background-color: #C8AB4D; border-color: #C8AB4D;">Add Device</button>
+                                            </form>
+
+                                            <script>
+                                                // Enable Bootstrap validation
+                                                (function () {
+                                                    'use strict';
+                                                    var forms = document.querySelectorAll('.needs-validation');
+                                                    Array.prototype.slice.call(forms).forEach(function (form) {
+                                                        form.addEventListener('submit', function (event) {
+                                                            if (!form.checkValidity()) {
+                                                                event.preventDefault();
+                                                                event.stopPropagation();
+                                                            }
+                                                            form.classList.add('was-validated');
+                                                        }, false);
+                                                    });
+                                                })();
+                                            </script>
                                     </div>
                                 </div>
                             </div>
@@ -170,6 +200,8 @@
                 <!-- Example of Static Data (can be dynamic with PHP loop) -->
                 @foreach($devices as $device)
                     <div class="news-card">
+
+
                         <div class="news-card-img">
                             <img src="{{ asset('/device_images/' . $device->image) }}" alt="">
                         </div>
@@ -186,6 +218,27 @@
             </div>
         </div>
     </section>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            // Fetch all the forms we want to apply Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation');
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
 
     <!-- Bootstrap and jQuery Scripts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

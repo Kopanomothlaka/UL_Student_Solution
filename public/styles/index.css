@@ -181,3 +181,11 @@ body {
     display: block;
 }
 /*******\\\\ News and Updates section ends!!!!!\\\\\ ******/
+.navbar .nav-link {
+    color: #000; /* Default link color */
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #C8AB4D; /* Hover color */
+}
