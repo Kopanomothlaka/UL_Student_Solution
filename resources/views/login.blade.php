@@ -29,22 +29,50 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST" class="needs-validation" novalidate>
             @csrf
-            <div class="input-container">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+            <div class="input-container mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid email address.
+                </div>
             </div>
-            <div class="input-container">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
+            <div class="input-container mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter your password.
+                </div>
             </div>
             <p>Forgot password? <a href="{{ asset('resetPassword') }}">Reset</a></p>
-            <button type="submit">LOGIN</button>
+            <button type="submit" class="btn btn-primary">LOGIN</button>
             <p>You don't have an account? <a href="/registration">Create account</a></p>
         </form>
+
     </div>
 </div>
+
+<script>
+    (function () {
+        'use strict'
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

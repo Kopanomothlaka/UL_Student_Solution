@@ -91,6 +91,7 @@
                     </div>
                 </div>
             </div>
+
             <hr style="border: 1px solid #C8AB4D; margin-top: 20px;">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -216,6 +217,8 @@
                     </div>
                 @endforeach
             </div>
+
+
         </div>
     </section>
     <script>
