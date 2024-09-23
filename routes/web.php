@@ -55,8 +55,8 @@ Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map
 // routes/web.php
 Route::get('/student/passOur', [PassoutController::class, 'index'])->name('student.passOur');
 Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');
-Route::post('devices/{device}/report', [PassoutController::class, 'report'])->name('devices.report');
 
+Route::post('/devices/{id}/report', [PassoutController::class, 'report'])->name('devices.report');
 Route::delete('devices/{device}', [PassoutController::class, 'destroy'])->name('devices.delete');
 
 

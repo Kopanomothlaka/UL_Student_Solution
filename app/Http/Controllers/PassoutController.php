@@ -23,14 +23,30 @@ class PassoutController extends Controller
 
 
     // Method to report a device as stolen
-    public function report(Request $request, $id)
+    public function report($id)
     {
-        $device = Device::findOrFail($id);
-        $device->status = 'stolen'; // Assuming there's a status field in your devices table
+        $device = Device::find($id);
+
+        if (!$device) {
+            return redirect()->back()->withErrors('Device not found.');
+        }
+
+        // Toggle the status between 'stolen' and 'active'
+        if ($device->status === 'stolen') {
+            $device->status = 'active'; // Mark as found
+            $message = 'Device marked as found.';
+        } else {
+            $device->status = 'stolen'; // Report as stolen
+            $message = 'Device reported as stolen.';
+        }
+
         $device->save();
 
-        return redirect()->route('devices.index')->with('success', 'Device reported as stolen.');
+        return redirect()->back()->with('success', $message);
     }
+
+
+
 
     // Method to delete a device
     public function destroy($id)

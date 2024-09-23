@@ -235,7 +235,18 @@
                                 <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{ route('devices.report', $device->id) }}"><i class="fa fa-exclamation-triangle icon-color" aria-hidden="true"></i> Stolen</a></li>
+                                <li>
+                                    <form action="{{ route('devices.report', $device->id) }}" method="POST" style="display: inline;">
+                                        @csrf <!-- This adds the CSRF token -->
+                                        <button type="submit" class="dropdown-item" >
+                                            <i class="fa fa-exclamation-triangle icon-color" aria-hidden="true"></i> Stolen
+                                        </button>
+                                    </form>
+                                </li>
+
+
+
+
                                 <li>
                                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $device->id }}').submit();">
                                         <i class="fa fa-trash icon-color" aria-hidden="true"></i> Delete
@@ -260,6 +271,10 @@
                             <a href="#">{{ $device->name }}</a>
                             <h4>Serial Number: {{ $device->serial_number }}</h4>
                             <h4>Device Type: {{ $device->type }}</h4>
+                            <p style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
+                                {{ $device->status }}
+                            </p>
+
                         </div>
                     </div>
                 @endforeach
