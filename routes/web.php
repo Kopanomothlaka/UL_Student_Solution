@@ -49,12 +49,17 @@ Route::get('/student/lecturers', [StudentController::class, 'lecturer'])->name('
 Route::get('/student/updates', [StudentController::class, 'updates'])->name('student.updates');
 
 
-Route::get('/student/passOur', [PassoutController::class, 'index'])->name('student.passOur');
 Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map');
 
 //passout
 // routes/web.php
+Route::get('/student/passOur', [PassoutController::class, 'index'])->name('student.passOur');
 Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');
+Route::post('devices/{device}/report', [PassoutController::class, 'report'])->name('devices.report');
+
+Route::delete('devices/{device}', [PassoutController::class, 'destroy'])->name('devices.delete');
+
+
 //profile
 Route::get('/student/profile/StudentProfile', [StudentProfileController::class, 'profile'])->name('student.profile.StudentProfile');
 Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');

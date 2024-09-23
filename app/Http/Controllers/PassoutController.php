@@ -19,4 +19,25 @@ class PassoutController extends Controller
     {
         return view('student.map'); // Create this view
     }
+    // Method to show the edit form for a device
+
+
+    // Method to report a device as stolen
+    public function report(Request $request, $id)
+    {
+        $device = Device::findOrFail($id);
+        $device->status = 'stolen'; // Assuming there's a status field in your devices table
+        $device->save();
+
+        return redirect()->route('devices.index')->with('success', 'Device reported as stolen.');
+    }
+
+    // Method to delete a device
+    public function destroy($id)
+    {
+        $device = Device::findOrFail($id);
+        $device->delete();
+        return redirect()->back()->with('success', 'Device deleted successfully.');
+    }
+
 }

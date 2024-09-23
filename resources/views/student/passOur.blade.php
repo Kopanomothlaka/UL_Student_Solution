@@ -226,23 +226,29 @@
 
             <!-- Device Display Section -->
             <div class="news-card-container">
-                <!-- Example of Static Data (can be dynamic with PHP loop) -->
                 @foreach($devices as $device)
                     <div class="news-card">
 
                         <div class="dropdown p-2">
+                            @if(Auth::check()) <!-- Check if the user is authenticated -->
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-edit icon-color" aria-hidden="true"></i> Edit</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-triangle icon-color" aria-hidden="true"></i> Stolen</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-trash icon-color" aria-hidden="true"></i> Delete</a></li>
+                                <li><a class="dropdown-item" href="{{ route('devices.report', $device->id) }}"><i class="fa fa-exclamation-triangle icon-color" aria-hidden="true"></i> Stolen</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $device->id }}').submit();">
+                                        <i class="fa fa-trash icon-color" aria-hidden="true"></i> Delete
+                                    </a>
+                                    <form id="delete-form-{{ $device->id }}" action="{{ route('devices.delete', $device->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+
+                                </li>
                             </ul>
+                            @endif
                         </div>
-
-
-
 
                         <div class="news-card-img">
                             <img src="{{ asset('/device_images/' . $device->image) }}" alt="">
@@ -258,6 +264,7 @@
                     </div>
                 @endforeach
             </div>
+
 
 
         </div>
