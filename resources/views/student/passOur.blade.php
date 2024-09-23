@@ -76,6 +76,34 @@
             justify-content: center;
             margin-top: 20px;
         }
+
+        .dropdown-toggle::after {
+            content: none !important; /* Remove the default down arrow */
+            display: none !important;
+        }
+        .dropdown-toggle {
+            border: none; /* Optional: Remove border if you want a cleaner look */
+            background: none; /* Optional: Remove background color */
+            padding: 0; /* Optional: Adjust padding as needed */
+        }
+
+        .dropdown-toggle i {
+            font-size: 29px;
+            color: #b89c3e;
+
+            /* Increase the size of the icon */
+        }
+        .icon-color {
+            color: #b89c3e; /* Change this to your desired color */
+        }
+
+        /* Optional: Change color on hover */
+        .dropdown-item:hover .icon-color {
+            color: #212529; /* Change to a darker shade on hover */
+        }
+
+
+
     </style>
 
     <section class="news-update-section">
@@ -202,6 +230,19 @@
                 @foreach($devices as $device)
                     <div class="news-card">
 
+                        <div class="dropdown p-2">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-edit icon-color" aria-hidden="true"></i> Edit</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-triangle icon-color" aria-hidden="true"></i> Stolen</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-trash icon-color" aria-hidden="true"></i> Delete</a></li>
+                            </ul>
+                        </div>
+
+
+
 
                         <div class="news-card-img">
                             <img src="{{ asset('/device_images/' . $device->image) }}" alt="">
@@ -247,6 +288,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
     <script>
         // Get the modal
