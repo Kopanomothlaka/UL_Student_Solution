@@ -65,4 +65,24 @@ class StudentProfileController extends Controller
         // Redirect to the login page or wherever you want after logout
         return redirect('/login')->with('success', 'You have been logged out successfully.');
     }
+
+
+    public function toggleAvailability(Request $request)
+    {
+        $user = auth()->user();
+
+        // Ensure the user is a lecturer
+        if ($user->role !== 'lecturer') {
+            return redirect()->back()->with('error', 'Only lecturers can update their availability.');
+        }
+
+        // Toggle availability status
+        $user->status = $user->status === 'available' ? 'Unavailable' : 'available';
+        $user->save();
+
+        return redirect()->back()->with('status', 'Availability updated successfully.');
+    }
+
+
+
 }

@@ -30,7 +30,7 @@ class LoginController extends Controller
 
             // Redirect based on user role
             if ($user->role === 'lecturer') {
-                return redirect()->route('lecturer.dashboard'); // Change this to your lecturer dashboard route
+                return redirect()->route('student.dashboard'); // Change this to your lecturer dashboard route
             } elseif ($user->role === 'student') {
                 return redirect()->route('student.dashboard'); // Change this to your student dashboard route
             }

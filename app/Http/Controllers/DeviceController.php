@@ -38,4 +38,7 @@ class DeviceController extends Controller
 
         return redirect()->back()->with('success', 'Device registered successfully!');
     }
+
+
+
 }

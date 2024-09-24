@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -10,10 +11,7 @@ class StudentController extends Controller
     {
         return view('student.dashboard'); // Create this view
     }
-    public function lecturer()
-    {
-        return view('student.lecturers'); // Create this view
-    }
+
     public function updates()
     {
         return view('student.updates'); // Create this view

@@ -42,10 +42,14 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordP
 
 
 //Dashboard
-Route::get('/lecturer/dashboard', [LecturerController::class, 'index'])->name('lecturer.dashboard');
+
+Route::get('/student/lecturers', [LecturerController::class, 'index'])->name('student.lecturers');
+Route::get('/lecturer/Availability', [LecturerController::class, 'availability'])->name('lecturer.availability');
+Route::post('/lecturer/update-status', [LecturerController::class, 'updateAvailability'])->name('lecturer.updateAvailability');
+
+
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
-Route::get('/student/lecturers', [StudentController::class, 'lecturer'])->name('student.lecturers');
 Route::get('/student/updates', [StudentController::class, 'updates'])->name('student.updates');
 
 
@@ -56,6 +60,10 @@ Route::get('/student/map', [PassoutController::class, 'map'])->name('student.map
 Route::get('/student/passOur', [PassoutController::class, 'index'])->name('student.passOur');
 Route::post('/devices/store', [DeviceController::class, 'store'])->name('devices.store');
 
+
+Route::put('/devices/{id}', [PassoutController::class, 'update'])->name('devices.update');
+
+
 Route::post('/devices/{id}/report', [PassoutController::class, 'report'])->name('devices.report');
 Route::delete('devices/{device}', [PassoutController::class, 'destroy'])->name('devices.delete');
 
@@ -64,4 +72,9 @@ Route::delete('devices/{device}', [PassoutController::class, 'destroy'])->name('
 Route::get('/student/profile/StudentProfile', [StudentProfileController::class, 'profile'])->name('student.profile.StudentProfile');
 Route::put('/profile', [StudentProfileController::class, 'update'])->name('profile.update');
 Route::post('/logout', [StudentProfileController::class, 'logout'])->name('logout');
+Route::post('/lecturer/toggle-availability', [StudentProfileController::class, 'toggleAvailability'])
+    ->name('lecturer.toggleAvailability')
+    ->middleware('auth');  // Ensure the user is authenticated
+
+
 

@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-md-3 ">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+
                     <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
 
                     <!-- Display the user's name and email dynamically -->
@@ -17,10 +18,30 @@
                     <span> </span>
 
                     <!-- Logout button -->
-                    <form action="{{ route('logout') }}" method="POST">
+                    <div class="d-flex justify-content-between align-items-center mb-">
+
+                        @if (auth()->user()->role === 'lecturer')
+                            <!-- Availability Toggle Button -->
+                            <form action="{{ route('lecturer.toggleAvailability') }}" method="POST" class="mb-0 ml-3">
+                                @csrf
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn"
+                                            style="background-color: {{ auth()->user()->status === 'available' ? 'green' : 'red' }}; color: white; min-width: 150px;">
+                                        {{ auth()->user()->status === 'available' ? 'Available' : 'Unavailable' }}
+                                    </button>
+                                </div>
+                            </form>
+
+                        @endif
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST" class="mb-0" onsubmit="return confirmLogout();">
                         @csrf
-                        <button class="btn btn-danger mt-3" type="submit">Log Out</button>
+                        <button type="submit" class="btn btn-link text-danger " style="min-width: 85px;">
+                            <i class="fas fa-sign-out-alt"></i> <!-- Log Out Icon -->
+                            Log Out
+                        </button>
                     </form>
+
                 </div>
             </div>
 
@@ -28,6 +49,9 @@
                 <div class="p-3 py-8">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
+
+
+
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -89,6 +113,13 @@
                             <button class="btn profile-button" type="submit" style="background: #b89c3e; color: white">Update Profile</button>
                         </div>
                     </form>
+
+
+
+
+
+
+
                 </div>
             </div>
 
@@ -111,6 +142,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
         // Get the modal
         const modal = document.getElementById("deviceModal");
 

@@ -1,12 +1,11 @@
-<!-- resources/views/home.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Student Solution ')
+@section('title', 'Lecturers List')
 
 @section('content')
     <section class="lecturers-section">
         <div class="header">
-            <h1>News and Updates</h1>
+            <h1>Lecturers</h1>
             <form action="" class="search-form">
                 <input type="text" placeholder="Search here..." class="search-input">
                 <button type="button" class="search-button active">
@@ -18,34 +17,22 @@
             </form>
         </div>
         <div class="lecturers-container">
-            <div class="lecturer">
-                <div class="lecturer-info">
-                    <h1>Dr Andrew Tate</h1>
-                    <p>Faculty of Science and Agriculture</p>
-                    <p>School of mathematics</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Maths Building Office 10096</p>
-                    <h1 class="availability">Available</h1>
-                </div>
-            </div>
-            <div class="lecturer">
-                <div class="lecturer-info">
-                    <h1>Dr Andrew Tate</h1>
-                    <p>Faculty of Science and Agriculture</p>
-                    <p>School of mathematics</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Maths Building Office 10096</p>
-                    <h1 class="availability">Available</h1>
-                </div>
-            </div>
-            <div class="lecturer">
-                <div class="lecturer-info">
-                    <h1>Dr Andrew Tate</h1>
-                    <p>Faculty of Science and Agriculture</p>
-                    <p>School of mathematics</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Maths Building Office 10096</p>
-                    <h1 class="availability">Not Available</h1>
-                </div>
-            </div>
+            @if($lecturers->isEmpty())
+                <p>No lecturers available.</p>
+            @else
+                @foreach($lecturers as $lecturer)
+                    <div class="lecturer">
+                        <div class="lecturer-info">
+                            <h1>{{ $lecturer->name }}</h1>
+                            <p>Faculty of Science and Agriculture</p>
+                            <p>School of Mathematics</p>
+                            <h1 class="availability" style="color: {{ $lecturer->status === 'available' ? 'white' : 'red' }};">
+                                {{ ucfirst($lecturer->status) }}
+                            </h1>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </section>
-
 @endsection
