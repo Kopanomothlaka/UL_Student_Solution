@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Lecturers List')
+@section('title', 'Availability')
 
 @section('content')
     <section class="lecturers-section">
@@ -18,12 +18,12 @@
         </div>
 
         <!-- Current Lecturer's Info -->
-        <div class="lecturer">
+        <div class="lecturer mt-5">
             <div class="lecturer-info">
                 <h1>{{ $currentLecturer->name }}</h1> <!-- Display current lecturer's name -->
                 <p>Faculty of Science and Agriculture</p>
                 <p>School of Mathematics</p>
-                <h1 class="availability" style="color: {{ $currentLecturer->status === 'available' ? 'green' : 'red' }};">
+                <h1 class="availability" style="color: {{ $currentLecturer->status === 'available' ? 'white' : 'red' }};">
                     {{ ucfirst($currentLecturer->status) }} <!-- Display current availability status -->
                 </h1>
 

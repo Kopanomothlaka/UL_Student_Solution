@@ -18,7 +18,7 @@
 
 
             @endif
-            <li class="nav-item"><a href="" class="nav-link">Labs</a></li>
+            <li class="nav-item"><a href="{{ route('all.labs') }}" class="nav-link">Labs</a></li>
             <li class="nav-item"><a href="{{ route('student.updates') }}" class="nav-link">Updates</a></li>
             <li class="nav-item"><a href="" class="nav-link">Lost Items</a></li>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LabController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\PassoutController;
 use App\Http\Controllers\StudentController;
@@ -47,6 +48,10 @@ Route::get('/student/lecturers', [LecturerController::class, 'index'])->name('st
 Route::get('/lecturer/Availability', [LecturerController::class, 'availability'])->name('lecturer.availability');
 Route::post('/lecturer/update-status', [LecturerController::class, 'updateAvailability'])->name('lecturer.updateAvailability');
 
+//lab
+Route::get('/student/labs', [LabController::class, 'index'])->name('all.labs');
+Route::post('/labs/book', [LabController::class, 'bookSlot'])->name('book.slot')->middleware('auth');
+Route::delete('/labs/unbook/{id}', [LabController::class, 'unbookSlot'])->name('labs.unbook')->middleware('auth');
 
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
