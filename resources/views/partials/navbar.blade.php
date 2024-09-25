@@ -20,7 +20,7 @@
             @endif
             <li class="nav-item"><a href="{{ route('all.labs') }}" class="nav-link">Labs</a></li>
             <li class="nav-item"><a href="{{ route('student.updates') }}" class="nav-link">Updates</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Lost Items</a></li>
+            <li class="nav-item"><a href="{{ route('lostItems') }}" class="nav-link">Lost Items</a></li>
 
         </ul>
         <a href="{{ route('student.profile.StudentProfile') }}" class="btn btn-outline-primary profile-link ml-lg-3 border border-white" >Profile</a>

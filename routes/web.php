@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\FoundAndLost;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\PassoutController;
@@ -52,6 +53,8 @@ Route::post('/lecturer/update-status', [LecturerController::class, 'updateAvaila
 Route::get('/student/labs', [LabController::class, 'index'])->name('all.labs');
 Route::post('/labs/book', [LabController::class, 'bookSlot'])->name('book.slot')->middleware('auth');
 Route::delete('/labs/unbook/{id}', [LabController::class, 'unbookSlot'])->name('labs.unbook')->middleware('auth');
+//found
+Route::get('/lostItems', [FoundAndLost::class, 'index'])->name('lostItems');
 
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');

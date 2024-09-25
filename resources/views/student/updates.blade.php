@@ -1,7 +1,7 @@
 <!-- resources/views/home.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Student Solution ')
+@section('title', 'Updates ')
 
 @section('content')
     <section class="news-update-section">
