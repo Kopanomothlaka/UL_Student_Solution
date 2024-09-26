@@ -98,19 +98,24 @@
                         <span class="bg-destructive text-white px-3 py-2 rounded text-center">
                             Booked<br>{{ $booking->booking_time }}
                         </span>
-                        @php
-                            $currentDateTime = now(); // Get the current date and time
-                            // Assume the booking_time is formatted as "HH:mm to HH:mm"
-                            [$startTime, $endTime] = explode(' to ', $booking->booking_time);
-                            $bookingEndTime = \Carbon\Carbon::parse($booking->booking_date . ' ' . $endTime); // Get the end time of the booking
-                        @endphp
 
-                        @if ($currentDateTime->greaterThan($bookingEndTime))
-                            <form action="{{ route('labs.unbook', $booking->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Unbook</button>
-                            </form>
+                        @if(Auth::user()->role === 'lecturer')
+                            @php
+                                $currentDateTime = now(); // Get the current date and time
+                                // Assume the booking_time is formatted as "HH:mm to HH:mm"
+                                [$startTime, $endTime] = explode(' to ', $booking->booking_time);
+                                $bookingEndTime = \Carbon\Carbon::parse($booking->booking_date . ' ' . $endTime); // Get the end time of the booking
+                            @endphp
+
+                            @if ($currentDateTime->greaterThan($bookingEndTime))
+                                <form action="{{ route('labs.unbook', $booking->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Unbook</button>
+                                </form>
+                            @endif
+
+
                         @endif
 
                     </div>

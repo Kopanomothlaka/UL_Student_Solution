@@ -55,6 +55,7 @@ Route::post('/labs/book', [LabController::class, 'bookSlot'])->name('book.slot')
 Route::delete('/labs/unbook/{id}', [LabController::class, 'unbookSlot'])->name('labs.unbook')->middleware('auth');
 //found
 Route::get('/lostItems', [FoundAndLost::class, 'index'])->name('lostItems');
+Route::post('/lostItems', [FoundAndLost::class, 'store'])->name('lostItems.store');
 
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
