@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class FoundAndLost extends Controller
 {
     public function index()
-{
-    // Fetch all lost and found items from the database
-    $items = LostItem::all();
+    {
+        // Fetch all lost and found items from the database, ordered by created_at descending
+        $items = LostItem::orderBy('created_at', 'desc')->get();
 
-    return view('lostItems', compact('items'));
-}
+        return view('lostItems', compact('items'));
+    }
+
 
     // Store new lost or found item
     public function store(Request $request)
@@ -39,6 +40,7 @@ class FoundAndLost extends Controller
 
         // Create a new lost or found item in the database
         LostItem::create([
+            'user_id' => Auth::id(),
             'item_name' => $validated['item_name'],
             'item_description' => $validated['item_description'],
             'location' => $validated['location'],
@@ -49,5 +51,19 @@ class FoundAndLost extends Controller
 
         // Redirect back with success message
         return redirect()->route('lostItems')->with('success', 'Item added successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $item = LostItem::findOrFail($id);
+
+        // Check if the authenticated user is the owner of the item
+        if ($item->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'You are not authorized to delete this item.');
+        }
+
+        $item->delete();
+
+        return redirect()->route('lostItems')->with('success', 'Item deleted successfully.');
     }
 }

@@ -56,6 +56,7 @@ Route::delete('/labs/unbook/{id}', [LabController::class, 'unbookSlot'])->name('
 //found
 Route::get('/lostItems', [FoundAndLost::class, 'index'])->name('lostItems');
 Route::post('/lostItems', [FoundAndLost::class, 'store'])->name('lostItems.store');
+Route::delete('/lost-items/{id}', [FoundAndLost::class, 'destroy'])->name('lostItems.destroy');
 
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');

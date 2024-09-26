@@ -16,5 +16,13 @@ class LostItem extends Model
         'contact_number',
         'item_type',
         'image',
+        'user_id'
     ];
+
+    // LostItem.php model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
