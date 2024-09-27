@@ -8,6 +8,7 @@ use App\Http\Controllers\FoundAndLost;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\PassoutController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,8 @@ Route::get('/lostItems', [FoundAndLost::class, 'index'])->name('lostItems');
 Route::post('/lostItems', [FoundAndLost::class, 'store'])->name('lostItems.store');
 Route::delete('/lost-items/{id}', [FoundAndLost::class, 'destroy'])->name('lostItems.destroy');
 
+//pdf
+Route::get('/devices/download-pdf/{id}', [PdfController::class, 'downloadPdf'])->name('devices.downloadPdf');
 
 Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
 Route::get('/student/updates', [StudentController::class, 'updates'])->name('student.updates');

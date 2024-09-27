@@ -274,9 +274,11 @@
                             <a href="#">{{ $device->name }}</a>
                             <h4>Serial Number: {{ $device->serial_number }}</h4>
                             <h4>Device Type: {{ $device->type }}</h4>
-                            <p c style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
+                            <p style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
                                 {{ $device->status }}
                             </p>
+
+                            <a href="{{ route('devices.downloadPdf', $device->id) }}" class="btn btn-secondary">Download PDF</a>
 
                         </div>
                     </div>
