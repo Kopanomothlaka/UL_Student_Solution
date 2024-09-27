@@ -21,10 +21,13 @@ class DeviceController extends Controller
     ]);
 
 
-        // Handle file upload
+        // Handle file upload directly to public/device_images/
         $imagePath = null;
         if ($request->hasFile('deviceImage')) {
-            $imagePath = $request->file('deviceImage')->store('device_images', 'public');
+            $file = $request->file('deviceImage');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('device_images'), $filename);  // Save file in public/device_images
+            $imagePath = 'device_images/' . $filename;
         }
 
         // Store the device in the database

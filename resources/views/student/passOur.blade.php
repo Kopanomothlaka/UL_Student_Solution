@@ -227,7 +227,7 @@
             <!-- Device Display Section -->
             <div class="news-card-container">
                 @foreach($devices as $device)
-                    <div class="news-card">
+                    <div class="news-card " >
 
                         <div class="dropdown p-2">
                             @if(Auth::check()) <!-- Check if the user is authenticated -->
@@ -262,29 +262,50 @@
                         </div>
 
                         <div class="news-card-img">
-                            <img src="{{ asset('/device_images/' . $device->image) }}" alt="">
+                            <img src="{{ asset($device->image) }} "
+                                 alt="Device Image" class="img-fluid"
+                                 style="width: 100%; height: 200px; object-fit: cover;"
+                            />
+
+
                         </div>
-                        <div class="news-card-img">
-                            <img src="/assets/images/laptop_image.png" alt="Graduation Event">
-                        </div>
+
                         <div class="news-card-content">
                             <a href="#">{{ $device->name }}</a>
                             <h4>Serial Number: {{ $device->serial_number }}</h4>
                             <h4>Device Type: {{ $device->type }}</h4>
-                            <p style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
+                            <p c style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
                                 {{ $device->status }}
                             </p>
 
                         </div>
                     </div>
                 @endforeach
+
+
             </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
         </div>
     </section>
+
+
+
     <script>
+
+
+
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
             'use strict';

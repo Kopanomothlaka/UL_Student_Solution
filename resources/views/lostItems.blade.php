@@ -152,12 +152,14 @@
                                 <button class="btn btn-{{ $item->item_type == 'lost' ? 'danger' : 'primary' }} mt-2 me-2">
                                     {{ strtoupper($item->item_type) }}
                                 </button>
-                                <button class="btn btn-secondary mt-2 me-2">
+                                <a href="tel:{{ $item->user->phone }}" class="btn btn-secondary mt-2 me-2">
                                     <i class="fas fa-phone"></i>
-                                </button>
-                                <button class="btn btn-secondary mt-2 me-2">
+                                </a>
+
+                                <!-- Email Button -->
+                                <a href="mailto:{{ $item->user->email }}" class="btn btn-secondary mt-2 me-2">
                                     <i class="fas fa-envelope"></i>
-                                </button>
+                                </a>
 
                                 <!-- Other item details -->
                                 @if ($item->user_id === Auth::id())
@@ -180,5 +182,7 @@
             @endforeach
         </div>
     </div>
+
+
 
 @endsection
