@@ -278,7 +278,10 @@
                                 {{ $device->status }}
                             </p>
 
-                            <a href="{{ route('devices.downloadPdf', $device->id) }}" class="btn btn-secondary">Download PDF</a>
+                            <a href="{{ route('devices.downloadPdf', $device->id) }}" >
+                                <i class="fas fa-download"></i>
+                            </a>
+
 
                         </div>
                     </div>
