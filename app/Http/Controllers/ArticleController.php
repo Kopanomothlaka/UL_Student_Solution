@@ -33,4 +33,11 @@ class ArticleController extends Controller
 
         return redirect()->back()->with('success', 'Article added successfully!');
     }
+
+    public function show($id)
+    {
+        // Fetch the article by ID
+        $article = Article::findOrFail($id); // This will throw a 404 if not found
+        return view('articles.show_article', compact('article')); // Pass the article to the view
+    }
 }

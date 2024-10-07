@@ -1,84 +1,43 @@
-<!-- resources/views/home.blade.php -->
 @extends('layouts.app')
 
-@section('title', 'Updates ')
+@section('title', 'Updates')
 
 @section('content')
     <section class="news-update-section">
-        <div class="header">
-            <h1>News and Updates</h1>
-            <form action="" class="search-form">
-                <input type="text" placeholder="Search here..." class="search-input">
-                <button type="button" class="search-button active">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                <button type="button" class="cancel-button">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </form>
-        </div>
-
-        <div class="news-card-container">
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/graduation_event_image.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Graduation Event at Tiro Hall</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/bash.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Bash Event at Pond</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/internet_issues.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Internet issues</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/internet_issues.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Internet issues</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/graduation_event_image.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Graduation Event at Tiro Hall</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
-            </div>
-            <div class="news-card">
-                <div class="news-card-img">
-                    <img src="/assets/images/bash.jpeg" alt="">
-                </div>
-                <div class="news-card-content">
-                    <h4>Bash Event at Pond</h4>
-                    <p>For a landing page focused on solving campus problems with... </p>
-                    <a href="">READ MORE</a>
-                </div>
+        <h1 class="text-center">News and Updates</h1>
+        <div class="container">
+            <div class="row">
+                @foreach($articles as $article)
+                    <div class="col-md-4 mb-4">
+                        <div class="news-card shadow-lg bg-white rounded h-100"> <!-- Ensure card height is 100% -->
+                            <div class="news-card-img">
+                                <img src="{{ Storage::url($article->image) }}" alt="{{ $article->title }}" class="img-fluid rounded-top">
+                            </div>
+                            <div class="news-card-content p-3"> <!-- Add some padding -->
+                                <h4 class="h6">{{ $article->title }}</h4>
+                                <p>{{ $article->description }}</p> <!-- Assuming there's a description field -->
+                                <a href="{{ route('articles.show', $article->id) }}" class="btn ">READ MORE</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
+
+    <style>
+        .news-card-img img {
+            width: 100%; /* Ensures the image takes the full width of the card */
+            height: 200px; /* Set a default height for the images */
+            object-fit: cover; /* This ensures that the image covers the area without distortion */
+        }
+        .news-card {
+            height: 100%; /* Ensures all cards have the same height */
+        }
+
+        .news-update-section {
+            padding: 2rem 4.5rem;
+            width: 100%;
+        }
+    </style>
 @endsection
