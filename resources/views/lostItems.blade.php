@@ -7,7 +7,7 @@
     <div class="container mx-auto p-6">
         <header class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h2 font-weight-bold" style="color: #b89c3e">Lost and Found</h1>
-            <button class="btn btn-secondary" data-toggle="modal" data-target="#addDeviceModal">+ Add Device</button>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#addDeviceModal">+ Add Lost or Found items</button>
         </header>
 
         @if ($errors->any())

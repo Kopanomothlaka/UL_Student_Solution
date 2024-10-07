@@ -11,7 +11,7 @@
                     Empower your academic journey and tackle campus challenges with smart,
                     efficient tools designed just for you.
                 </p>
-                <a href="" class="btn btn-outline-primary profile-link ml-lg-3 border border-white">Access ></a>
+                <a href="" class="btn btn-outline-primary profile-link ml-lg-3 border border-white">Access </a>
             </div>
         </div>
     </section>
