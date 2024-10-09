@@ -17,10 +17,17 @@
                 initialView: 'dayGridMonth',
                 events: '{{ route('student.events.data') }}', // Route to fetch events
                 eventDidMount: function(info) {
-                    // Optional: Customize how the event is displayed
+                    // Format start and end times
                     var startTime = info.event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     var endTime = info.event.end ? info.event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-                    info.el.innerHTML += '<br/>' + startTime + ' - ' + endTime; // Show time range
+
+                    // Create a custom HTML structure
+                    var eventElement = document.createElement('div');
+                    eventElement.innerHTML = `<strong>${info.event.title}</strong><br/>`;
+                    eventElement.innerHTML += `<button class="btn btn-info btn-sm">${startTime} to ${endTime}</button>`;
+
+                    info.el.innerHTML = ''; // Clear default content
+                    info.el.appendChild(eventElement); // Append custom content
                 }
             });
             calendar.render();
