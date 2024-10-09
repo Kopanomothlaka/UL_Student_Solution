@@ -115,6 +115,10 @@ Route::middleware('auth:admin')->group(function() {
     Route::get('/admin/news', [ArticleController::class, 'news'])->name('admin.news');
 
 
+    Route::post('/devices/{id}/found', [SecurityAdminController::class, 'markAsFound'])->name('devices.found');
+    Route::post('/devices/{id}/notify', [SecurityAdminController::class, 'notifyLocation'])->name('devices.notify');
+
+
 });
 
 

@@ -276,7 +276,15 @@
                             <h4>Device Type: {{ $device->type }}</h4>
                             <p style="color: {{ $device->status === 'active' ? 'green' : ($device->status === 'stolen' ? 'red' : 'black') }}">
                                 {{ $device->status }}
+
                             </p>
+                            <p>
+                                @if($device->status === 'found')
+                                    Collect it at {{ $device->location }} <!-- Show collection instruction -->
+
+                                @endif
+                            </p>
+
 
                             <a href="{{ route('devices.downloadPdf', $device->id) }}" >
                                 <i class="fas fa-download"></i>

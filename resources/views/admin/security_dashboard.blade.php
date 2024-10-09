@@ -197,6 +197,17 @@
 
             <div class="container">
                 <h1>Stolen Devices</h1>
+
+                @if(session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                <div class="alert alert-info">
+                    <strong>Note:</strong> If you have information about where to retrieve any of the stolen devices, please notify the relevant authorities or the user.
+                </div>
+
                 <table class="table">
                     <thead>
                     <tr>
@@ -207,6 +218,9 @@
                         <th>User Name</th>
                         <th>Image</th>
                         <th>Reported On</th>
+                        <th>Status</th> <!-- Status Column -->
+                        <th>Location</th> <!-- Location Column -->
+                        <th>Notify Location</th> <!-- New Notify Column -->
                     </tr>
                     </thead>
                     <tbody>
@@ -216,9 +230,18 @@
                             <td>{{ $device->name }}</td>
                             <td>{{ $device->serial_number }}</td>
                             <td>{{ $device->type }}</td>
-                            <td>{{ $device->user->name ?? 'N/A' }}</td> {{-- Display user name or 'N/A' if not found --}}
+                            <td>{{ $device->user->name ?? 'N/A' }}</td>
                             <td><img src="{{ asset($device->image) }}" alt="{{ $device->name }}" width="100"></td>
                             <td>{{ $device->created_at }}</td>
+                            <td>{{ ucfirst($device->status) }}</td> <!-- Display the status -->
+                            <td>{{ $device->location ?? 'N/A' }}</td> <!-- Show the location -->
+                            <td>
+                                <form action="{{ route('devices.notify', $device->id) }}" method="POST">
+                                    @csrf
+                                    <input type="text" name="location" placeholder="Enter location" required>
+                                    <button type="submit" class="btn btn-primary btn-sm">Notify Location</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

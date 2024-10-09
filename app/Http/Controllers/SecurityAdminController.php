@@ -60,6 +60,30 @@ class SecurityAdminController extends Controller
     }
 
 
+    public function markAsFound($id)
+    {
+        $device = Device::findOrFail($id);
+        $device->status = 'found'; // Update the status to 'found'
+        $device->save(); // Save the changes
+
+        return redirect()->back()->with('message', 'Device marked as found successfully!');
+    }
+
+    public function notifyLocation(Request $request, $id)
+    {
+        $request->validate([
+            'location' => 'required|string|max:255',
+        ]);
+
+        $device = Device::findOrFail($id);
+        $device->status = 'found'; // Change status to found
+        $device->location = $request->input('location'); // Save the location
+        $device->save(); // Save changes
+
+        return redirect()->back()->with('message', 'Device marked as found: Collect at ' . $device->location);
+    }
+
+
 
 
 
