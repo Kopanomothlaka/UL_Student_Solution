@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\FoundAndLost;
 use App\Http\Controllers\LabController;
@@ -88,7 +89,14 @@ Route::middleware('auth:admin')->group(function() {
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
 
 //events
-    Route::get('/admin/events', [SecurityAdminController::class, 'events'])->name('admin.events');
+    Route::get('/admin/events', [EventController::class, 'events'])->name('admin.events');
+    Route::resource('events', EventController::class);
+    Route::get('events-data', [EventController::class, 'getEvents'])->name('events.data');
+
+
+
+
+
 
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
     Route::resource('articles', ArticleController::class);

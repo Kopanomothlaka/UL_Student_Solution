@@ -6,7 +6,6 @@
     <div class="container mt-5">
         <h1>Event Calendar</h1>
 
-        <!-- Button to trigger the modal -->
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#eventModal" id="addEventBtn">
             Add Event
         </button>
@@ -29,15 +28,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="eventStartDate">Start Date</label>
-                                <input type="date" class="form-control" id="eventStartDate" required>
-                                <label for="eventStartTime">Start Time (HH:MM)</label>
-                                <input type="text" class="form-control" id="eventStartTime" placeholder="e.g. 14:30" required>
+                                <input type="datetime-local" class="form-control" id="eventStart" required>
                             </div>
                             <div class="form-group">
                                 <label for="eventEndDate">End Date</label>
-                                <input type="date" class="form-control" id="eventEndDate" required>
-                                <label for="eventEndTime">End Time (HH:MM)</label>
-                                <input type="text" class="form-control" id="eventEndTime" placeholder="e.g. 16:00" required>
+                                <input type="datetime-local" class="form-control" id="eventEnd" required>
                             </div>
                         </form>
                     </div>
@@ -61,116 +56,96 @@
         <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'></script>
 
         <script>
-            let currentEvent; // Variable to hold the currently selected event
+            let currentEvent;
 
             $(document).ready(function() {
-                // Initialize the calendar
                 var calendar = $('#calendar').fullCalendar({
                     header: {
                         left: 'prev,next today',
                         center: 'title',
                         right: 'month,agendaWeek,agendaDay'
                     },
-                    events: JSON.parse(localStorage.getItem('events')) || [],
+                    events: '{{ route('events.data') }}',
                     editable: true,
-                    eventLimit: true, // allow "more" link when too many events
-                    eventRender: function(event, element) {
-                        var startTime = moment(event.start).format('HH:mm');
-                        var endTime = moment(event.end).format('HH:mm');
-                        element.find('.fc-title').append('<br/>' + startTime + ' - ' + endTime);
-                    },
                     eventClick: function(event) {
-                        // Populate the modal with event data for editing
                         currentEvent = event;
                         $('#eventTitle').val(event.title);
-                        $('#eventStartDate').val(moment(event.start).format('YYYY-MM-DD'));
-                        $('#eventStartTime').val(moment(event.start).format('HH:mm'));
-                        $('#eventEndDate').val(moment(event.end).format('YYYY-MM-DD'));
-                        $('#eventEndTime').val(moment(event.end).format('HH:mm'));
-
+                        $('#eventStart').val(moment(event.start).format('YYYY-MM-DDTHH:mm'));
+                        $('#eventEnd').val(moment(event.end).format('YYYY-MM-DDTHH:mm'));
                         $('#eventModalLabel').text('Edit Event');
-                        $('#deleteEventBtn').show(); // Show delete button
-                        $('#saveEventBtn').text('Update Event'); // Change button text
+                        $('#deleteEventBtn').show();
+                        $('#saveEventBtn').text('Update Event');
                         $('#eventModal').modal('show');
                     }
                 });
 
-                // Add event button click
                 $('#addEventBtn').click(function() {
-                    // Reset the form for a new event
                     currentEvent = null;
-                    $('#eventForm')[0].reset(); // Reset the form
-                    $('#deleteEventBtn').hide(); // Hide delete button
+                    $('#eventForm')[0].reset();
+                    $('#deleteEventBtn').hide();
                     $('#eventModalLabel').text('Add Event');
                     $('#saveEventBtn').text('Add Event');
                 });
 
-                // Save or update event button click
                 $('#saveEventBtn').click(function() {
                     var title = $('#eventTitle').val();
-                    var startDate = $('#eventStartDate').val();
-                    var startTime = $('#eventStartTime').val();
-                    var endDate = $('#eventEndDate').val();
-                    var endTime = $('#eventEndTime').val();
+                    var start = $('#eventStart').val();
+                    var end = $('#eventEnd').val();
 
-                    // Validate time format (HH:MM)
-                    var timeFormat = /^([01]\d|2[0-3]):([0-5]\d)$/;
-                    if (title && startDate && startTime.match(timeFormat) && endDate && endTime.match(timeFormat)) {
-                        var start = moment(startDate + ' ' + startTime, 'YYYY-MM-DD HH:mm');
-                        var end = moment(endDate + ' ' + endTime, 'YYYY-MM-DD HH:mm');
-
+                    if (title && start && end) {
                         if (currentEvent) {
                             // Update existing event
-                            currentEvent.title = title;
-                            currentEvent.start = start;
-                            currentEvent.end = end;
-
-                            calendar.fullCalendar('updateEvent', currentEvent);
+                            $.ajax({
+                                url: '/events/' + currentEvent.id,
+                                method: 'PUT',
+                                data: {
+                                    title: title,
+                                    start: start,
+                                    end: end,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function() {
+                                    calendar.fullCalendar('updateEvent', currentEvent);
+                                    $('#eventModal').modal('hide');
+                                }
+                            });
                         } else {
                             // Create new event
-                            var event = {
-                                id: new Date().getTime(), // Unique ID for the event
-                                title: title,
-                                start: start,
-                                end: end
-                            };
-
-                            // Render the event on the calendar
-                            calendar.fullCalendar('renderEvent', event, true);
+                            $.ajax({
+                                url: '/events',
+                                method: 'POST',
+                                data: {
+                                    title: title,
+                                    start: start,
+                                    end: end,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function(event) {
+                                    calendar.fullCalendar('renderEvent', event, true);
+                                    $('#eventModal').modal('hide');
+                                }
+                            });
                         }
-
-                        // Save the events to localStorage
-                        updateLocalStorage(calendar);
-
-                        $('#eventModal').modal('hide'); // Hide the modal
                     } else {
-                        alert('Please fill in all fields correctly (HH:MM format for time).');
+                        alert('Please fill in all fields.');
                     }
                 });
 
-                // Delete event button click
                 $('#deleteEventBtn').click(function() {
                     if (currentEvent) {
-                        // Remove event from the calendar
-                        calendar.fullCalendar('removeEvents', currentEvent.id); // Use ID to remove
-
-                        // Update localStorage
-                        updateLocalStorage(calendar);
-
-                        $('#eventModal').modal('hide'); // Hide the modal
+                        $.ajax({
+                            url: '/events/' + currentEvent.id,
+                            method: 'DELETE',
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function() {
+                                calendar.fullCalendar('removeEvents', currentEvent.id);
+                                $('#eventModal').modal('hide');
+                            }
+                        });
                     }
                 });
-
-                // Function to update localStorage
-                function updateLocalStorage(calendar) {
-                    var events = calendar.fullCalendar('clientEvents').map(event => ({
-                        id: event.id,
-                        title: event.title,
-                        start: event.start.format(),
-                        end: event.end.format()
-                    }));
-                    localStorage.setItem('events', JSON.stringify(events));
-                }
             });
         </script>
     @endpush

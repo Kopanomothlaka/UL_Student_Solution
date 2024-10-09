@@ -7,29 +7,46 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index()
+
+    public function events()
     {
-        $events = Event::all();
-        return response()->json($events);
+        $events = Event::all(); // Get all events
+        return view('admin.events', compact('events'));
     }
 
-    // Store a new event
     public function store(Request $request)
     {
-        $event = Event::create([
-            'title' => $request->title,
-            'start' => $request->start,
-            'end' => $request->end,
+        $request->validate([
+            'title' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date|after_or_equal:start',
         ]);
 
-        return response()->json($event);
+        Event::create($request->all());
+        return redirect()->back()->with('success', 'Event added successfully!');
     }
 
-    // Delete an event
-    public function destroy($id)
+    public function update(Request $request, Event $event)
     {
-        $event = Event::find($id);
-        $event->delete();
-        return response()->json(['success' => true]);
+        $request->validate([
+            'title' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date|after_or_equal:start',
+        ]);
+
+        $event->update($request->all());
+        return redirect()->back()->with('success', 'Event updated successfully!');
     }
+
+    public function destroy(Event $event)
+    {
+        $event->delete();
+        return redirect()->back()->with('success', 'Event deleted successfully!');
+    }
+
+    public function getEvents()
+    {
+        return response()->json(Event::all());
+    }
+
 }
