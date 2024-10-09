@@ -151,8 +151,11 @@
                 // Delete event button click
                 $('#deleteEventBtn').click(function() {
                     if (currentEvent) {
-                        calendar.fullCalendar('removeEvent', currentEvent._id); // Remove event from calendar
-                        updateLocalStorage(calendar); // Update localStorage
+                        // Remove event from the calendar
+                        calendar.fullCalendar('removeEvents', currentEvent.id); // Use ID to remove
+
+                        // Update localStorage
+                        updateLocalStorage(calendar);
 
                         $('#eventModal').modal('hide'); // Hide the modal
                     }
