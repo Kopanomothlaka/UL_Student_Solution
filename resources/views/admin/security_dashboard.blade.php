@@ -171,77 +171,56 @@
         <div class="container mx-auto p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Dashboard</h1>
-                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPassoutModal">Add Passout Record</a>
             </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-md-3">
                     <div class="bg-primary text-white p-4 rounded-lg">
                         <h2 class="h5">Total Passouts</h2>
-                        <p class="h2 font-weight-bold">125</p>
+                        <p class="h2 font-weight-bold">{{$totalPassOut}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-success text-white p-4 rounded-lg">
                         <h2 class="h5">Total Stolen Devices</h2>
-                        <p class="h2 font-weight-bold">15</p>
+                        <p class="h2 font-weight-bold">{{$totalStolenDevices}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-warning text-white p-4 rounded-lg">
                         <h2 class="h5">Total Lost Items</h2>
-                        <p class="h2 font-weight-bold">50</p>
+                        <p class="h2 font-weight-bold">{{ $totalLostItems}}</p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="bg-danger text-white p-4 rounded-lg">
-                        <h2 class="h5">Total Reports</h2>
-                        <p class="h2 font-weight-bold">190</p>
-                    </div>
-                </div>
+
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow">
-                <h2 class="h5 font-weight-bold mb-4">Latest Reports</h2>
-                <table class="table table-bordered">
-                    <thead class="table-light">
+            <div class="container">
+                <h1>Stolen Devices</h1>
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th class="text-center">No</th>
-                        <th>Item Description</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Reported On</th>
-                        <th class="text-center">Location</th>
+                        <th>ID</th>
+                        <th>Device Name</th>
+                        <th>Serial Number</th>
+                        <th>Type</th>
+                        <th>User Name</th>
+                        <th>Image</th>
+                        <th>Reported On</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="text-center">1</td>
-                        <td>Black Laptop - Dell XPS 13</td>
-                        <td class="text-center">Stolen</td>
-                        <td class="text-center">2024-10-02</td>
-                        <td class="text-center">Library</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">2</td>
-                        <td>Blue Backpack</td>
-                        <td class="text-center">Lost</td>
-                        <td class="text-center">2024-09-29</td>
-                        <td class="text-center">Campus Entrance</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">3</td>
-                        <td>Graduation Certificate</td>
-                        <td class="text-center">Found</td>
-                        <td class="text-center">2024-09-27</td>
-                        <td class="text-center">Administration Office</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">4</td>
-                        <td>Smartphone - iPhone 12</td>
-                        <td class="text-center">Stolen</td>
-                        <td class="text-center">2024-09-25</td>
-                        <td class="text-center">Cafeteria</td>
-                    </tr>
+                    @foreach($stolenDevices as $device)
+                        <tr>
+                            <td>{{ $device->id }}</td>
+                            <td>{{ $device->name }}</td>
+                            <td>{{ $device->serial_number }}</td>
+                            <td>{{ $device->type }}</td>
+                            <td>{{ $device->user->name ?? 'N/A' }}</td> {{-- Display user name or 'N/A' if not found --}}
+                            <td><img src="{{ asset($device->image) }}" alt="{{ $device->name }}" width="100"></td>
+                            <td>{{ $device->created_at }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

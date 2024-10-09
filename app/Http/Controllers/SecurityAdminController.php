@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Device;
 use App\Models\Event;
+use App\Models\LostItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Ensure you have necessary imports
@@ -41,6 +43,21 @@ class SecurityAdminController extends Controller
         return redirect('login'); // Redirect to the admin login page
     }
 
+
+    public function getStolenDevices()
+    {
+        // Retrieve devices with status 'stolen' along with user information
+        $stolenDevices = Device::with('user')->where('status', 'stolen')->take(2)->get();
+
+        $totalPassOut = Device::count();// Get the total number of events
+        $totalStolenDevices = Device::where('status', 'stolen')->count();
+        $totalLostItems = LostItem::count();// Get the total number of events
+
+
+
+        // Return the stolen devices to a view
+        return view('admin.security_dashboard', compact('stolenDevices','totalPassOut','totalStolenDevices','totalLostItems'));
+    }
 
 
 
