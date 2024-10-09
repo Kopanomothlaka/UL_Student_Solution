@@ -67,6 +67,7 @@
                             <td class="text-center">{{ $article->created_at->format('Y-m-d') }}</td>
                             <td class="text-center">N/A</td>
                             <td class="text-center">
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editNewsModal" onclick="editArticle({{ $article->id }}, '{{ $article->title }}', '{{ $article->content }}')">Edit</button>
                                 <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -76,6 +77,40 @@
                         </tr>
                     @endforeach
                     </tbody>
+                    <!-- Modal for Editing News -->
+                    <div class="modal fade" id="editNewsModal" tabindex="-1" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editNewsModalLabel">Edit Article</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editArticleForm" action="" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id" id="editArticleId">
+                                        <div class="mb-3">
+                                            <label for="editNewsTitle" class="form-label">Article Title</label>
+                                            <input type="text" class="form-control" id="editNewsTitle" name="title" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editNewsContent" class="form-label">Content</label>
+                                            <textarea class="form-control" id="editNewsContent" name="content" rows="4" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="editNewsImage" class="form-label">Upload Image</label>
+                                            <input type="file" class="form-control" id="editNewsImage" name="image" accept="image/*">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </table>
 
             </div>
@@ -220,5 +255,14 @@
         </div>
     @endif
 
+    <script>
+        function editArticle(id, title, content) {
+            document.getElementById('editArticleId').value = id;
+            document.getElementById('editNewsTitle').value = title;
+            document.getElementById('editNewsContent').value = content;
 
+            // Update the form action to point to the correct URL
+            document.getElementById('editArticleForm').action = '/articles/' + id;
+        }
+    </script>
 @endsection

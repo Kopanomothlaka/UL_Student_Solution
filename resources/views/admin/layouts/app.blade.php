@@ -85,10 +85,15 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                             Home
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.news') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                             News
                         </a>
+                        <a class="nav-link" href="{{ route('admin.events') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Events
+                        </a>
+
 
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
@@ -99,10 +104,7 @@
                             Lectures
                         </a>
 
-                        <a class="nav-link" href="{{ route('admin.events') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
-                            Events
-                        </a>
+
 
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
@@ -122,6 +124,7 @@
             <div class="container-fluid px-4">
                 <!-- Page Content -->
                 @yield('content')
+                @stack('scripts')
             </div>
         </main>
 

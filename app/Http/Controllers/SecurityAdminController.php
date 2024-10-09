@@ -12,7 +12,7 @@ class SecurityAdminController extends Controller
 
     public function index()
     {
-        $articles = Article::latest()->take(5)->get(); // Fetch the latest 5 articles
+        $articles = Article::latest()->take(2)->get(); // Fetch the latest 5 articles
         return view('admin.security_dashboard', compact('articles')); // Pass articles to the view
     }
     public function events()

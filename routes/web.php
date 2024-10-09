@@ -90,10 +90,13 @@ Route::middleware('auth:admin')->group(function() {
 //events
     Route::get('/admin/events', [SecurityAdminController::class, 'events'])->name('admin.events');
 
+    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+    Route::resource('articles', ArticleController::class);
+
+    Route::get('/admin/news', [ArticleController::class, 'news'])->name('admin.news');
 
 
 });
 
 
-Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
-Route::resource('articles', ArticleController::class);
+
