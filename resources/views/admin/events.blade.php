@@ -129,6 +129,7 @@
                         } else {
                             // Create new event
                             var event = {
+                                id: new Date().getTime(), // Unique ID for the event
                                 title: title,
                                 start: start,
                                 end: end
@@ -139,8 +140,7 @@
                         }
 
                         // Save the events to localStorage
-                        var events = calendar.fullCalendar('clientEvents');
-                        localStorage.setItem('events', JSON.stringify(events));
+                        updateLocalStorage(calendar);
 
                         $('#eventModal').modal('hide'); // Hide the modal
                     } else {
@@ -152,14 +152,22 @@
                 $('#deleteEventBtn').click(function() {
                     if (currentEvent) {
                         calendar.fullCalendar('removeEvent', currentEvent._id); // Remove event from calendar
-
-                        // Save the events to localStorage
-                        var events = calendar.fullCalendar('clientEvents');
-                        localStorage.setItem('events', JSON.stringify(events));
+                        updateLocalStorage(calendar); // Update localStorage
 
                         $('#eventModal').modal('hide'); // Hide the modal
                     }
                 });
+
+                // Function to update localStorage
+                function updateLocalStorage(calendar) {
+                    var events = calendar.fullCalendar('clientEvents').map(event => ({
+                        id: event.id,
+                        title: event.title,
+                        start: event.start.format(),
+                        end: event.end.format()
+                    }));
+                    localStorage.setItem('events', JSON.stringify(events));
+                }
             });
         </script>
     @endpush
