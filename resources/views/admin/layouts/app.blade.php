@@ -66,11 +66,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark bg-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link active" href="#">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
-                    </a>
+
 
                     <div class="sb-sidenav-menu-heading">Management</div>
 
@@ -85,6 +81,10 @@
                         </a>
                     @endif
                     @if(Auth::user()->role === 'general_admin')
+                        <a class="nav-link" href="{{ route('admin.security.dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
+                            Home
+                        </a>
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                             News
@@ -99,10 +99,11 @@
                             Lectures
                         </a>
 
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.events') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
                             Events
                         </a>
+
                         <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
                             Labs

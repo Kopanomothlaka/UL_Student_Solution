@@ -66,12 +66,18 @@
                             <td class="text-center">{{ ucfirst($article->status) }}</td>
                             <td class="text-center">{{ $article->created_at->format('Y-m-d') }}</td>
                             <td class="text-center">N/A</td>
+                            <td class="text-center">
+                                <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this article?');">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
-
-
                     </tbody>
                 </table>
+
             </div>
         </div>
         <!-- Modal for Adding News -->

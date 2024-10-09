@@ -87,7 +87,13 @@ Route::middleware('auth:admin')->group(function() {
 
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
 
+//events
+    Route::get('/admin/events', [SecurityAdminController::class, 'events'])->name('admin.events');
+
+
+
 });
 
 
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::resource('articles', ArticleController::class);

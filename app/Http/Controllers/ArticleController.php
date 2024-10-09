@@ -40,4 +40,19 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id); // This will throw a 404 if not found
         return view('articles.show_article', compact('article')); // Pass the article to the view
     }
+
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+
+        return redirect()->back()->with('success', 'Article deleted successfully!');
+    }
+
+
+
+
+
+
+
 }

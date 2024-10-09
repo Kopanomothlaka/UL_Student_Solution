@@ -15,6 +15,10 @@ class SecurityAdminController extends Controller
         $articles = Article::latest()->take(5)->get(); // Fetch the latest 5 articles
         return view('admin.security_dashboard', compact('articles')); // Pass articles to the view
     }
+    public function events()
+    {
+        return view('admin.events'); // Pass articles to the view
+    }
 
 
     // Logout the admin user
@@ -26,5 +30,10 @@ class SecurityAdminController extends Controller
 
         return redirect('login'); // Redirect to the admin login page
     }
+
+
+
+
+
 
 }
