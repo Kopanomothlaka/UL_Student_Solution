@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Ensure you have necessary imports
 
@@ -12,13 +14,21 @@ class SecurityAdminController extends Controller
 
     public function index()
     {
-        $articles = Article::latest()->take(2)->get(); // Fetch the latest 5 articles
-        return view('admin.security_dashboard', compact('articles')); // Pass articles to the view
+        $articles = Article::latest()->take(2)->get();
+        $totalEvents = Event::count();// Get the total number of events
+        $totalUser = User::count();// Get the total number of events
+
+
+
+        // Fetch the latest 5 articles
+        return view('admin.security_dashboard', compact('articles','totalEvents','totalUser')); // Pass articles to the view
     }
     public function events()
     {
         return view('admin.events'); // Pass articles to the view
     }
+
+
 
 
     // Logout the admin user

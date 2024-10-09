@@ -21,21 +21,16 @@
                 <div class="col-md-3">
                     <div class="bg-success text-white p-4 rounded-lg">
                         <h2 class="h5">Total Events</h2>
-                        <p class="h2 font-weight-bold">30</p>
+                        <p class="h2 font-weight-bold">{{ $totalEvents }}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-warning text-white p-4 rounded-lg">
                         <h2 class="h5">Total Users</h2>
-                        <p class="h2 font-weight-bold">8,425</p>
+                        <p class="h2 font-weight-bold">{{ $totalUser }}</p>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="bg-danger text-white p-4 rounded-lg">
-                        <h2 class="h5">Total Views</h2>
-                        <p class="h2 font-weight-bold">1,024</p>
-                    </div>
-                </div>
+
             </div>
             @if(session('success'))
                 <div class="alert alert-success">
@@ -54,7 +49,6 @@
                         <th class="text-center">Picture</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Published On</th>
-                        <th class="text-center">Views</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,7 +59,6 @@
                             <td class="text-center"><img src="{{ Storage::url($article->image) }}" alt="Image" width="150"></td>
                             <td class="text-center">{{ ucfirst($article->status) }}</td>
                             <td class="text-center">{{ $article->created_at->format('Y-m-d') }}</td>
-                            <td class="text-center">N/A</td>
                             <td class="text-center">
                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editNewsModal" onclick="editArticle({{ $article->id }}, '{{ $article->title }}', '{{ $article->content }}')">Edit</button>
                                 <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline;">

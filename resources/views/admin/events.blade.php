@@ -23,7 +23,7 @@
                     <div class="modal-body">
                         <form id="eventForm">
                             <div class="form-group">
-                                <label for="eventTitle">Event Title</label>
+                                <label for="eventTitle">Event Name and Location</label>
                                 <input type="text" class="form-control" id="eventTitle" required>
                             </div>
                             <div class="form-group">
