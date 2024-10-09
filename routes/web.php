@@ -13,6 +13,7 @@ use App\Http\Controllers\PassoutController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SecurityAdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentEventController;
 use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/devices/{id}', [PassoutController::class, 'update'])->name('devices.update');
     Route::post('/devices/{id}/report', [PassoutController::class, 'report'])->name('devices.report');
     Route::delete('devices/{device}', [PassoutController::class, 'destroy'])->name('devices.delete');
+
+    //event
+    // Route for student event calendar
+    Route::get('/student/events', [StudentEventController::class, 'index'])->name('student.events');
+
+// Route to fetch events data for the calendar
+    Route::get('/events/data', [StudentEventController::class, 'fetchEvents'])->name('student.events.data');
 });
 
 // This allows access to the login page without authentication

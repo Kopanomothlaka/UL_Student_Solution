@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
     <script src="/scripts/script.js" defer></script>
 
@@ -29,7 +32,9 @@
 @include('partials.navbar') <!-- Including the navbar partial -->
 
 <div class="content">
-    @yield('content') <!-- Main content of the page -->
+    @yield('content')
+    @stack('scripts')
+    <!-- Main content of the page -->
 </div>
 
 
