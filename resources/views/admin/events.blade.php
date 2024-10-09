@@ -27,11 +27,11 @@
                                 <input type="text" class="form-control" id="eventTitle" required>
                             </div>
                             <div class="form-group">
-                                <label for="eventStartDate">Start Date</label>
+                                <label for="eventStart">Start Date</label>
                                 <input type="datetime-local" class="form-control" id="eventStart" required>
                             </div>
                             <div class="form-group">
-                                <label for="eventEndDate">End Date</label>
+                                <label for="eventEnd">End Date</label>
                                 <input type="datetime-local" class="form-control" id="eventEnd" required>
                             </div>
                         </form>
@@ -67,6 +67,11 @@
                     },
                     events: '{{ route('events.data') }}',
                     editable: true,
+                    eventRender: function(event, element) {
+                        var startTime = moment(event.start).format('HH:mm'); // Format to show only time
+                        var endTime = moment(event.end).format('HH:mm'); // Format to show only time
+                        element.find('.fc-title').append('<br/>' + startTime + ' - ' + endTime); // Display time range
+                    },
                     eventClick: function(event) {
                         currentEvent = event;
                         $('#eventTitle').val(event.title);
@@ -105,6 +110,9 @@
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function() {
+                                    currentEvent.title = title;
+                                    currentEvent.start = start;
+                                    currentEvent.end = end;
                                     calendar.fullCalendar('updateEvent', currentEvent);
                                     $('#eventModal').modal('hide');
                                 }
