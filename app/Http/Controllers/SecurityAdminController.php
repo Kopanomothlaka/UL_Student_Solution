@@ -17,14 +17,44 @@ class SecurityAdminController extends Controller
     public function index()
     {
         $articles = Article::latest()->take(2)->get();
-        $totalEvents = Event::count();// Get the total number of events
-        $totalUser = User::count();// Get the total number of events
+        $totalEvents = Event::count(); // Get the total number of events
+        $totalUser = User::count(); // Get the total number of users
 
+        // Retrieve devices with status 'stolen' along with user information
+        $stolenDevices = Device::with('user')->where('status', 'stolen')->get();
+        $totalPassOut = Device::count(); // Get the total number of devices
+        $totalStolenDevices = Device::where('status', 'stolen')->count();
+        $totalLostItems = LostItem::count(); // Get the total number of lost items
 
-
-        // Fetch the latest 5 articles
-        return view('admin.security_dashboard', compact('articles','totalEvents','totalUser')); // Pass articles to the view
+        // Pass all the necessary data to the view
+        return view('admin.security_dashboard', compact(
+            'articles',
+            'totalEvents',
+            'totalUser',
+            'stolenDevices',
+            'totalPassOut',
+            'totalStolenDevices',
+            'totalLostItems'
+        ));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function events()
     {
         return view('admin.events'); // Pass articles to the view
@@ -44,20 +74,7 @@ class SecurityAdminController extends Controller
     }
 
 
-    public function getStolenDevices()
-    {
-        // Retrieve devices with status 'stolen' along with user information
-        $stolenDevices = Device::with('user')->where('status', 'stolen')->take(2)->get();
 
-        $totalPassOut = Device::count();// Get the total number of events
-        $totalStolenDevices = Device::where('status', 'stolen')->count();
-        $totalLostItems = LostItem::count();// Get the total number of events
-
-
-
-        // Return the stolen devices to a view
-        return view('admin.security_dashboard', compact('stolenDevices','totalPassOut','totalStolenDevices','totalLostItems'));
-    }
 
 
     public function markAsFound($id)

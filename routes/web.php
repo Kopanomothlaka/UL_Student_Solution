@@ -92,7 +92,7 @@ Route::get('/admin/layouts', function () {
 });
 Route::middleware('auth:admin')->group(function() {
     Route::get('/admin/security/dashboard', [SecurityAdminController::class, 'index'])->name('admin.security.dashboard');
-    Route::get('/admin/security/dashboard', [SecurityAdminController::class, 'getStolenDevices']);
+
 
 
     Route::post('/admin/logout', [SecurityAdminController::class, 'logout'])->name('admin.logout');

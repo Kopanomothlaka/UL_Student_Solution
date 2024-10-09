@@ -177,23 +177,23 @@
                 <div class="col-md-3">
                     <div class="bg-primary text-white p-4 rounded-lg">
                         <h2 class="h5">Total Passouts</h2>
-                        <p class="h2 font-weight-bold">{{$totalPassOut}}</p>
+                        <p class="h2 font-weight-bold">{{ $totalPassOut ?? 0 }}</p> <!-- Default to 0 if undefined -->
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-success text-white p-4 rounded-lg">
                         <h2 class="h5">Total Stolen Devices</h2>
-                        <p class="h2 font-weight-bold">{{$totalStolenDevices}}</p>
+                        <p class="h2 font-weight-bold">{{ $totalStolenDevices ?? 0 }}</p> <!-- Default to 0 if undefined -->
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-warning text-white p-4 rounded-lg">
                         <h2 class="h5">Total Lost Items</h2>
-                        <p class="h2 font-weight-bold">{{ $totalLostItems}}</p>
+                        <p class="h2 font-weight-bold">{{ $totalLostItems ?? 0 }}</p> <!-- Default to 0 if undefined -->
                     </div>
                 </div>
-
             </div>
+
 
             <div class="container">
                 <h1>Stolen Devices</h1>
@@ -238,7 +238,7 @@
                             <td>
                                 <form action="{{ route('devices.notify', $device->id) }}" method="POST">
                                     @csrf
-                                    <input type="text" name="location" placeholder="Enter location" required>
+                                    <input type="text" name="location" placeholder="Collect location" required>
                                     <button type="submit" class="btn btn-primary btn-sm">Notify Location</button>
                                 </form>
                             </td>
