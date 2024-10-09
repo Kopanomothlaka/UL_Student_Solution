@@ -6,8 +6,7 @@
 
     <!DOCTYPE html>
 <html lang='en'>
-<head>
-    <meta charset='utf-8' />
+
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script>
@@ -33,10 +32,9 @@
             calendar.render();
         });
     </script>
-</head>
-<body>
-<div id='calendar'></div>
-</body>
+
+<div id='calendar' style="margin: 50px"></div>
+
 </html>
 
 @endsection
