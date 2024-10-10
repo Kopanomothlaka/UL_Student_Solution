@@ -120,7 +120,7 @@ Route::middleware('auth:admin')->group(function() {
 
     //lost and found
     Route::get('/lost-and-found', [SecurityAdminController::class, 'lostAndFound'])->name('lost.and.found');
-
+    Route::post('/devices/notify-location/{id}', [SecurityAdminController::class, 'tifyLocation'])->name('devices.notifyLocation');
 
 });
 

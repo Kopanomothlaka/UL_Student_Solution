@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifyUser;
 use App\Models\Article;
 use App\Models\Device;
 use App\Models\Event;
 use App\Models\LostItem;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Ensure you have necessary imports
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
+// Ensure you have necessary imports
 
 class SecurityAdminController extends Controller
 {
@@ -95,6 +99,27 @@ class SecurityAdminController extends Controller
         return view('admin.lost_and_found', compact('lostItems'));
     }
 
+    public function tifyLocation(Request $request, $id)
+    {
+        // Validate the request
+        $request->validate([
+            'location' => 'required|string|max:255',
+        ]);
+
+        // Find the lost item and its associated user
+        $item = LostItem::with('user')->findOrFail($id);
+
+        // Update the location
+        $item->location = $request->input('location');
+        $item->save(); // Save the changes
+
+        // Notify the user via email
+        if ($item->user) {
+            Mail::to($item->user->email)->send(new NotifyUser($item));
+        }
+
+        return redirect()->back()->with('message', 'User notified about the collection location!');
+    }
 
 
 
