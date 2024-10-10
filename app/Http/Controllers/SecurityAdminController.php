@@ -39,22 +39,6 @@ class SecurityAdminController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function events()
     {
         return view('admin.events'); // Pass articles to the view
@@ -99,6 +83,19 @@ class SecurityAdminController extends Controller
 
         return redirect()->back()->with('message', 'Device marked as found: Collect at ' . $device->location);
     }
+
+    public function lostAndFound()
+    {
+        // Fetch all lost items with the associated user
+        $lostItems = LostItem::with('user')->latest()->get([
+            'id', 'item_name', 'item_description', 'location', 'contact_number', 'item_type', 'image', 'user_id'
+        ]);
+
+        // Return the view with lost items
+        return view('admin.lost_and_found', compact('lostItems'));
+    }
+
+
 
 
 

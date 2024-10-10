@@ -72,13 +72,13 @@
 
                     @if(Auth::user()->role === 'security_admin')
 
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('admin.security.dashboard') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
                             Stolen Devices
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('lost.and.found') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
-                            Pass-outs
+                            Lost and Found
                         </a>
                     @endif
                     @if(Auth::user()->role === 'general_admin')
