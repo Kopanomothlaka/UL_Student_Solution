@@ -45,7 +45,7 @@
                 <i class="fas fa-user fa-fw"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
                     <form action="{{ route('admin.logout') }}" method="POST">
@@ -96,21 +96,7 @@
                         </a>
 
 
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Students
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                            Lectures
-                        </a>
 
-
-
-                        <a class="nav-link" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
-                            Labs
-                        </a>
                     @endif
 
 

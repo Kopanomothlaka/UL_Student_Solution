@@ -10,6 +10,7 @@ use App\Models\LostItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 // Ensure you have necessary imports
@@ -88,6 +89,18 @@ class SecurityAdminController extends Controller
         return redirect()->back()->with('message', 'Device marked as found: Collect at ' . $device->location);
     }
 
+    public function activateDevice($id)
+    {
+        // Find the device by ID
+        $device = Device::findOrFail($id);
+
+        // Change the status to active
+        $device->status = 'active'; // Update status to active
+        $device->save(); // Save changes
+
+        return redirect()->back()->with('message', 'Device marked as active!');
+    }
+
     public function lostAndFound()
     {
         // Fetch all lost items with the associated user
@@ -121,6 +134,37 @@ class SecurityAdminController extends Controller
         return redirect()->back()->with('message', 'User notified about the collection location!');
     }
 
+
+    //profile
+    public function profile()
+    {
+        // You can fetch additional data here if needed
+        $admin = Auth::guard('admin')->user(); // Get the currently authenticated admin
+
+        return view('admin.profile', compact('admin')); // Return the profile view with admin data
+    }
+
+    public function changePassword(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $admin = Auth::guard('admin')->user();
+
+        // Check if the current password is correct
+        if (!Hash::check($request->current_password, $admin->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        // Update the password
+        $admin->password = Hash::make($request->new_password);
+        $admin->save();
+
+        return redirect()->back()->with('message', 'Password updated successfully!');
+    }
 
 
 

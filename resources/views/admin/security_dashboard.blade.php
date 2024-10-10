@@ -177,23 +177,23 @@
                 <div class="col-md-3">
                     <div class="bg-primary text-white p-4 rounded-lg">
                         <h2 class="h5">Total Passouts</h2>
-                        <p class="h2 font-weight-bold">{{ $totalPassOut ?? 0 }}</p> <!-- Default to 0 if undefined -->
+                        <p class="h2 font-weight-bold">{{$totalPassOut}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-success text-white p-4 rounded-lg">
                         <h2 class="h5">Total Stolen Devices</h2>
-                        <p class="h2 font-weight-bold">{{ $totalStolenDevices ?? 0 }}</p> <!-- Default to 0 if undefined -->
+                        <p class="h2 font-weight-bold">{{$totalStolenDevices}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="bg-warning text-white p-4 rounded-lg">
                         <h2 class="h5">Total Lost Items</h2>
-                        <p class="h2 font-weight-bold">{{ $totalLostItems ?? 0 }}</p> <!-- Default to 0 if undefined -->
+                        <p class="h2 font-weight-bold">{{ $totalLostItems}}</p>
                     </div>
                 </div>
-            </div>
 
+            </div>
 
             <div class="container">
                 <h1>Stolen Devices</h1>

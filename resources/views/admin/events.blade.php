@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger" id="deleteEventBtn" style="display: none;">Delete Event</button>
+                        <button type="button" class="btn btn-danger" id="deleteEventBtn" style="display: none;" >Delete Event</button>
                         <button type="button" class="btn btn-primary" id="saveEventBtn">Save Event</button>
                     </div>
                 </div>

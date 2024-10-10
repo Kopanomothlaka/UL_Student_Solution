@@ -117,10 +117,15 @@ Route::middleware('auth:admin')->group(function() {
 
     Route::post('/devices/{id}/found', [SecurityAdminController::class, 'markAsFound'])->name('devices.found');
     Route::post('/devices/{id}/notify', [SecurityAdminController::class, 'notifyLocation'])->name('devices.notify');
+    Route::post('/devices/{id}/activate', [SecurityAdminController::class, 'activateDevice'])->name('devices.activate');
 
     //lost and found
     Route::get('/lost-and-found', [SecurityAdminController::class, 'lostAndFound'])->name('lost.and.found');
     Route::post('/devices/notify-location/{id}', [SecurityAdminController::class, 'tifyLocation'])->name('devices.notifyLocation');
+
+    //profile
+    Route::get('/admin/profile', [SecurityAdminController::class, 'profile'])->name('admin.profile');
+    Route::post('/admin/change-password', [SecurityAdminController::class, 'changePassword'])->name('admin.changePassword');
 
 });
 
