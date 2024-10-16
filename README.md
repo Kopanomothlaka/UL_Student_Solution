@@ -5,6 +5,7 @@
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 <img src="https://github.com/user-attachments/assets/fd21adff-3b10-4446-b909-964fe0beec24" alt="Screenshot 2024-10-16 at 09-06-33 Student Solution Home">
+<a> </a>
 <img src="https://github.com/user-attachments/assets/c004c25b-237f-433e-804e-670b8fcbace2" alt="Screenshot 2024-10-16 at 09-06-44 Student Solution">
 <img src="https://github.com/user-attachments/assets/cefaa127-9af3-4de0-a376-bfb5d36e9009" alt="Screenshot 2024-10-16 at 09-07-47 Student Solution">
 <img src="https://github.com/user-attachments/assets/6c799195-7f1f-45ed-82a3-f505d2bee525" alt="Screenshot 2024-10-16 at 09-08-23 Availability">
