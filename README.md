@@ -1,15 +1,14 @@
 
 <p align="center">
-    <a href="https://laravel.com" target="_blank">
         <img src="https://github.com/user-attachments/assets/412b6527-3cff-438e-8bdb-8ff2434b34e2" width="400" alt="University of Limpopo Logo">
-       
-    </a>
+        <h3>University of Limpopo Student Solution</h3>
+    
 </p>
 
 
 ## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The University of Limpopo Student Solution is a comprehensive digital platform designed to streamline student life by providing centralized access to essential academic and non-academic resources. Key features include access to lecture notes, assignments, and pass-out certificate requests, along with real-time updates on lecture and lab availability. The platform also offers a detailed campus map to help students navigate university buildings, along with a messaging system for efficient student-staff communication. Students can stay updated on upcoming events, manage their schedules, and access library resources, all while benefiting from services like lost and found. This innovative platform enhances the overall student experience, making academic and campus life more organized and accessible.
 
 <img src="https://github.com/user-attachments/assets/fd21adff-3b10-4446-b909-964fe0beec24" alt="Screenshot 2024-10-16 at 09-06-33 Student Solution Home">
 <img src="https://github.com/user-attachments/assets/c004c25b-237f-433e-804e-670b8fcbace2" alt="Screenshot 2024-10-16 at 09-06-44 Student Solution">
