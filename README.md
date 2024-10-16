@@ -1,8 +1,8 @@
-<img src="https://github.com/user-attachments/assets/412b6527-3cff-438e-8bdb-8ff2434b34e2" alt="University of Limpopo Logo">
 
 <p align="center">
     <a href="https://laravel.com" target="_blank">
-        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+        <img src="https://github.com/user-attachments/assets/412b6527-3cff-438e-8bdb-8ff2434b34e2" width="400" alt="University of Limpopo Logo">
+       
     </a>
 </p>
 
