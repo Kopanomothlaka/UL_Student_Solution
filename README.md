@@ -6,7 +6,7 @@
 </p>
 
 
-## About Laravel
+## About 
 
 The University of Limpopo Student Solution is a comprehensive digital platform designed to streamline student life by providing centralized access to essential academic and non-academic resources. Key features include access to lecture notes, assignments, and pass-out certificate requests, along with real-time updates on lecture and lab availability. The platform also offers a detailed campus map to help students navigate university buildings, along with a messaging system for efficient student-staff communication. Students can stay updated on upcoming events, manage their schedules, and access library resources, all while benefiting from services like lost and found. This innovative platform enhances the overall student experience, making academic and campus life more organized and accessible.
 
