@@ -1,7 +1,7 @@
 
 <p align="center">
         <img src="https://github.com/user-attachments/assets/412b6527-3cff-438e-8bdb-8ff2434b34e2" width="400" alt="University of Limpopo Logo">
-        <h3>University of Limpopo Student Solution</h3>
+        <h3 align="center">University of Limpopo Student Solution</h3>
     
 </p>
 
