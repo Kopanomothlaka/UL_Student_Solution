@@ -35,7 +35,7 @@ body {
     width: 10rem;
 }
 .form-outer-container .form-wrapper h1 {
-    color: #C8AB4D;
+    color: #5db21e;
     margin: 0 0 1rem;
 }
 .form-outer-container .illustrator-container img {
@@ -53,12 +53,12 @@ body {
     display: block;
     width: 100%;
     padding: 0.5rem;
-    border: 2px solid #C8AB4D;
+    border: 2px solid #5db21e;
     border-radius: 1.5rem;
     font-size: medium;
 }
 .form-outer-container .form-wrapper button {
-    background-color: #C8AB4D;
+    background-color: #5db21e;
     color: white;
     font-weight: 700;
     font-size: large;
@@ -76,14 +76,14 @@ body {
 
 /* Add lost Item styling start */
 .form-outer-container .form-wrapper .input-container input[type="file"] {
-    padding: 0; 
+    padding: 0;
 }
 
 .form-outer-container .form-wrapper .input-container input::-webkit-file-upload-button {
     padding: 0.5rem;
-    background-color: #C8AB4D;
+    background-color: #5db21e;
     color: white;
-    border: 1px solid #C8AB4D;
+    border: 1px solid #5db21e;
 }
 
 .form-outer-container.add-lost-item .form-wrapper img {

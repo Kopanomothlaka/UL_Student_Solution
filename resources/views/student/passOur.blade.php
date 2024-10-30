@@ -58,14 +58,14 @@
 
         /* Custom button style */
         .btn-custom {
-            background-color: #C8AB4D; /* Button background color */
-            border-color: #C8AB4D;     /* Button border color */
+            background-color: #5db21e; /* Button background color */
+            border-color: #5db21e;     /* Button border color */
             color: #fff;               /* Text color */
         }
 
         .btn-custom:hover {
-            background-color: #b89c3e; /* Darker shade for hover effect */
-            border-color: #b89c3e;
+            background-color: #5db21e; /* Darker shade for hover effect */
+            border-color: #5db21e;
         }
 
         /* News Card Container */
@@ -89,12 +89,12 @@
 
         .dropdown-toggle i {
             font-size: 29px;
-            color: #b89c3e;
+            color: #5db21e;
 
             /* Increase the size of the icon */
         }
         .icon-color {
-            color: #b89c3e; /* Change this to your desired color */
+            color: #5db21e; /* Change this to your desired color */
         }
 
         /* Optional: Change color on hover */

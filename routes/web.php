@@ -126,6 +126,7 @@ Route::middleware('auth:admin')->group(function() {
     //profile
     Route::get('/admin/profile', [SecurityAdminController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/change-password', [SecurityAdminController::class, 'changePassword'])->name('admin.changePassword');
+    
 
 });
 

@@ -39,13 +39,13 @@ body {
 }
 
 .top-navbar .nav-item .nav-link:hover {
-    color: #C8AB4D;
+    color: #5db21e;
     border-bottom: 2px solid;
 }
 
 .top-navbar .profile-link {
     padding: 5px 35px;
-    background-color: #C8AB4D;
+    background-color: #5db21e;
     border-radius: 20px;
     text-decoration: none;
     color: white;

@@ -13,10 +13,10 @@
 <body>
 <div class="form-outer-container">
     <div class="illustrator-container">
-        <img src="{{ asset('/assets/images/Login-amico.png') }}" alt="">
+        <img src="{{ asset('/assets/images/Hosea2-1.png') }}" alt="">
     </div>
     <div class="form-wrapper">
-        <img src="{{ asset('/assets/images/ul_logo.png') }}" alt="">
+        <img src="{{ asset('/assets/images/Hoseaicon.png') }}" alt="">
         <h1>Login</h1>
 
         <!-- Display validation errors -->

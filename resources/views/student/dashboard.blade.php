@@ -55,7 +55,7 @@
         }
 
         .news-update-section h1 {
-            color: #C8AB4D;
+            color: #5db21e;
         }
 
         .news-card {
@@ -78,7 +78,7 @@
         }
 
         .news-card-content a {
-            color: #C8AB4D;
+            color: #5db21e;
             text-decoration: none;
             font-size: 1.5rem;
             font-weight: 700;

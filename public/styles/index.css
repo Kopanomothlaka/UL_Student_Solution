@@ -36,7 +36,7 @@ body {
     padding: 0px;
 }
 .hero-section .text-container .text-content h1 span {
-    color: #C8AB4D;
+    color: #5db21e;
 }
 .hero-section .text-container .text-content p{
     font-size: larger;
@@ -44,7 +44,7 @@ body {
 .hero-section .text-container .text-content a {
     text-decoration: none;
     color: white;
-    background-color: #C8AB4D;
+    background-color: #5db21e;
     padding: 8px 25px;
     border-radius: 25px;
     display: inline-block;
@@ -61,7 +61,7 @@ body {
 }
 
 .news-update-section h1, .lecturers-section h1 {
-    color: #C8AB4D;
+    color: #5db21e;
 }
 
 .news-update-section .news-card-container {
@@ -98,7 +98,7 @@ body {
 }
 
 .news-update-section .news-card-content a {
-    color: #C8AB4D;
+    color: #5db21e;
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 700;
@@ -138,14 +138,14 @@ body {
 
 .header input.active {
     width: 450px;
-    border: 2px solid #C8AB4D;
+    border: 2px solid #5db21e;
 }
 
 .search-form {
     position: relative;
 }
 .header .cancel-button {
-    background-color: #C8AB4D;
+    background-color: #5db21e;
     border: none;
     color: white;
     outline: none;
@@ -173,7 +173,7 @@ body {
 
 .header .search-button {
     display: none;
-    color: #C8AB4D;
+    color: #5db21e;
 }
 
 .header .search-button.active {
@@ -186,5 +186,5 @@ body {
 }
 
 .navbar .nav-link:hover {
-    color: #C8AB4D; /* Hover color */
+    color: #5db21e; /* Hover color */
 }
