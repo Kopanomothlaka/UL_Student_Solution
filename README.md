@@ -12,7 +12,6 @@ The University of Limpopo Student Solution is a comprehensive digital platform d
 
 <img src="https://github.com/user-attachments/assets/fd21adff-3b10-4446-b909-964fe0beec24" alt="Screenshot 2024-10-16 at 09-06-33 Student Solution Home">
 <img src="https://github.com/user-attachments/assets/c004c25b-237f-433e-804e-670b8fcbace2" alt="Screenshot 2024-10-16 at 09-06-44 Student Solution">
-<img src="https://github.com/user-attachments/assets/cefaa127-9af3-4de0-a376-bfb5d36e9009" alt="Screenshot 2024-10-16 at 09-07-47 Student Solution">
 <img src="https://github.com/user-attachments/assets/6c799195-7f1f-45ed-82a3-f505d2bee525" alt="Screenshot 2024-10-16 at 09-08-23 Availability">
 <img src="https://github.com/user-attachments/assets/0e1e1aaf-480b-4b0b-9353-8ac48eae4e8f" alt="Screenshot 2024-10-16 at 09-08-34 Labs">
 <img src="https://github.com/user-attachments/assets/62c7583d-358c-4b5a-8de9-41c98902b6a9" alt="Screenshot 2024-10-16 at 09-08-47 Labs">
